@@ -1,0 +1,180 @@
+@use './base/theme-variables';
+// @use './base/typography';
+// @use './themes/colors';
+// @use './themes/dark-mode';
+@use './utils/animations';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Import des autres fichiers partiels
+// @use './components/buttons';
+// @use './components/cards';
+// @use './components/forms';
+
+@layer base {
+  :root {
+    --background: #{$background-color-hsl};
+    --foreground: #{$foreground-color-hsl};
+    --card: #{$background-color-hsl};
+    --card-foreground: #{$foreground-color-hsl};
+    --popover: #{$background-color-hsl};
+    --popover-foreground: #{$foreground-color-hsl};
+    --primary: #{$primary-color-hsl};
+    --primary-foreground: 210 40% 98%;
+    --secondary: #{$secondary-color-hsl};
+    --secondary-foreground: #{$foreground-color-hsl};
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: #{$foreground-color-hsl};
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: #{$primary-color-hsl};
+    --radius: 0.5rem;
+
+    // Custom properties for style guide
+    --color-primary: hsl(var(--primary));
+    --color-secondary: hsl(var(--secondary));
+    --color-accent: hsl(var(--accent));
+    --color-destructive: hsl(var(--destructive));
+    --color-background: hsl(var(--background));
+    --color-foreground: hsl(var(--foreground));
+    --color-muted: hsl(var(--muted));
+    --color-muted-foreground: hsl(var(--muted-foreground));
+
+    --font-sans: 'Inter', sans-serif; // Assurez-vous d'importer Inter ou une police similaire
+    --font-serif: 'Lora', serif; // Assurez-vous d'importer Lora ou une police similaire
+    --font-mono: 'Fira Code', monospace; // Assurez-vous d'importer Fira Code ou une police similaire
+
+    --spacing-unit: 8px;
+  }
+
+  .dark {
+    --background: #{$dark-background-color-hsl};
+    --foreground: #{$dark-foreground-color-hsl};
+    --card: #{$dark-background-color-hsl};
+    --card-foreground: #{$dark-foreground-color-hsl};
+    --popover: #{$dark-background-color-hsl};
+    --popover-foreground: #{$dark-foreground-color-hsl};
+    --primary: #{$dark-primary-color-hsl};
+    --primary-foreground: 210 40% 98%;
+    --secondary: #{$dark-secondary-color-hsl};
+    --secondary-foreground: #{$dark-foreground-color-hsl};
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: #{$dark-foreground-color-hsl};
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: #{$dark-primary-color-hsl};
+
+    // Custom properties for style guide (dark mode)
+    --color-primary: hsl(var(--primary));
+    --color-secondary: hsl(var(--secondary));
+    --color-accent: hsl(var(--accent));
+    --color-destructive: hsl(var(--destructive));
+    --color-background: hsl(var(--background));
+    --color-foreground: hsl(var(--foreground));
+    --color-muted: hsl(var(--muted));
+    --color-muted-foreground: hsl(var(--muted-foreground));
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    @apply font-semibold tracking-tight;
+  }
+  h1 { @apply text-4xl md:text-5xl; }
+  h2 { @apply text-3xl md:text-4xl; }
+  h3 { @apply text-2xl md:text-3xl; }
+  h4 { @apply text-xl md:text-2xl; }
+  p { @apply leading-relaxed; }
+  code, pre {
+    font-family: var(--font-mono);
+  }
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, color-mix(in srgb, hsl(var(--primary)) 70%, hsl(var(--secondary)) 30%) 100%);
+}
+
+.dark .gradient-bg {
+   background: linear-gradient(135deg, hsl(var(--primary)) 0%, color-mix(in srgb, hsl(var(--primary)) 70%, hsl(var(--secondary)) 30%) 100%);
+}
+
+
+// Effets visuels
+.glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  .dark & {
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+.neon-glow {
+  box-shadow: 0 0 15px hsla(var(--primary), 0.4),
+              0 0 30px hsla(var(--primary), 0.2);
+
+  .dark & {
+    box-shadow: 0 0 20px hsla(var(--primary), 0.5),
+                0 0 40px hsla(var(--primary), 0.3);
+  }
+}
+
+// Animation
+.floating-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); } // Reduced float height
+}
+
+.pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite alternate; // Slightly slower pulse
+}
+
+@keyframes pulse-glow {
+  from { box-shadow: 0 0 15px hsla(var(--primary), 0.2); }
+  to { box-shadow: 0 0 25px hsla(var(--primary), 0.6); }
+}
+
+// Vertical Rhythm
+.vr {
+  @each $size in (1, 2, 3, 4, 6, 8) {
+    &-mt-#{$size} { margin-top: calc(#{$size} * var(--spacing-unit)); }
+    &-mb-#{$size} { margin-bottom: calc(#{$size} * var(--spacing-unit)); }
+    &-my-#{$size} {
+      margin-top: calc(#{$size} * var(--spacing-unit));
+      margin-bottom: calc(#{$size} * var(--spacing-unit));
+    }
+    &-pt-#{$size} { padding-top: calc(#{$size} * var(--spacing-unit)); }
+    &-pb-#{$size} { padding-bottom: calc(#{$size} * var(--spacing-unit)); }
+    &-py-#{$size} {
+      padding-top: calc(#{$size} * var(--spacing-unit));
+      padding-bottom: calc(#{$size} * var(--spacing-unit));
+    }
+  }
+}
+
+// Import Google Fonts (example)
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap');

@@ -1,0 +1,8 @@
+.guitars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: $spacing-lg;
+    padding: $spacing-lg;
+    max-width: $breakpoint-xl;
+    margin: 0 auto;
+}

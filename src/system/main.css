@@ -1,0 +1,65 @@
+.bg-flame-gradient {
+  background: linear-gradient(135deg, #ff4d00 0%, #ff7800 33%, #ff9a00 66%, #ffc200 100%);
+}
+.bg-flame-gradient-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background: linear-gradient(135deg, #ff4d00 0%, #ff7800 33%, #ff9a00 66%, #ffc200 100%);
+}
+
+.btn-flame {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  transition: var(--transition-colors);
+}
+.btn-flame:hover {
+  background-color: var(--color-primary-hover);
+}
+
+:root {
+  --color-banner-bg: #dddddd;
+  --color-page-bg: #ffffff;
+  --color-text-heading: #1a1a1a;
+  --color-text-body: #333333;
+  --color-primary: #ff4d00;
+  --color-primary-hover: #ff7800;
+  --gradient-page: linear-gradient(
+    to bottom,
+    var(--color-page-bg),
+    #dddddd
+  );
+  --transition-colors: color 0.3s ease, background-color 0.3s ease;
+}
+:root.dark {
+  --color-banner-bg: #1a1a1a;
+  --color-page-bg: #333333;
+  --color-text-heading: #ffffff;
+  --color-text-body: #dddddd;
+  --gradient-page: linear-gradient(
+    to bottom,
+    var(--color-page-bg),
+    #1a1a1a
+  );
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  transition: var(--transition-background), var(--transition-color);
+}
+
+body {
+  background: var(--gradient-page);
+  color: var(--color-text-body);
+  transition: var(--transition-colors);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text-heading);
+}
+
+.banner {
+  background-color: var(--color-banner-bg);
+  transition: var(--transition-colors);
+}/*# sourceMappingURL=main.css.map */

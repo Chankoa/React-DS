@@ -1,0 +1,277 @@
+@charset "UTF-8";
+/* TEST : Custom Colors -> en attendant de les intégrer dans les "tokens"  */
+/* Border & Background Colors */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* $background-color-hsl: $color-background-light; // Test 12.06.25 */
+/* $dark-background-color-hsl: $color-primary-dark; // Test 12.06.25 */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 262 83% 58%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 262 83% 58%;
+    --radius: 0.5rem;
+    --color-primary: hsl(var(--primary));
+    --color-secondary: hsl(var(--secondary));
+    --color-accent: hsl(var(--accent));
+    --color-destructive: hsl(var(--destructive));
+    --color-background: hsl(var(--background));
+    --color-foreground: hsl(var(--foreground));
+    --color-muted: hsl(var(--muted));
+    --color-muted-foreground: hsl(var(--muted-foreground));
+    --font-sans: "Inter", sans-serif;
+    --font-serif: "Lora", serif;
+    --font-mono: "Fira Code", monospace;
+    --spacing-unit: 8px;
+  }
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 262 83% 58%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 262 83% 58%;
+    --color-primary: hsl(var(--primary));
+    --color-secondary: hsl(var(--secondary));
+    --color-accent: hsl(var(--accent));
+    --color-destructive: hsl(var(--destructive));
+    --color-background: hsl(var(--background));
+    --color-foreground: hsl(var(--foreground));
+    --color-muted: hsl(var(--muted));
+    --color-muted-foreground: hsl(var(--muted-foreground));
+  }
+}
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    @apply font-semibold tracking-tight;
+  }
+  h1 {
+    @apply text-4xl md:text-5xl;
+  }
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+  p {
+    @apply leading-relaxed;
+  }
+  code, pre {
+    font-family: var(--font-mono);
+  }
+}
+.gradient-bg {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, color-mix(in srgb, hsl(var(--primary)) 70%, hsl(var(--secondary)) 30%) 100%);
+}
+
+.dark .gradient-bg {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, color-mix(in srgb, hsl(var(--primary)) 70%, hsl(var(--secondary)) 30%) 100%);
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .glass-effect {
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.neon-glow {
+  box-shadow: 0 0 15px hsla(var(--primary), 0.4), 0 0 30px hsla(var(--primary), 0.2);
+}
+
+.dark .neon-glow {
+  box-shadow: 0 0 20px hsla(var(--primary), 0.5), 0 0 40px hsla(var(--primary), 0.3);
+}
+
+.floating-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+.pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+  from {
+    box-shadow: 0 0 15px hsla(var(--primary), 0.2);
+  }
+  to {
+    box-shadow: 0 0 25px hsla(var(--primary), 0.6);
+  }
+}
+.vr-mt-1 {
+  margin-top: calc(1 * var(--spacing-unit));
+}
+.vr-mb-1 {
+  margin-bottom: calc(1 * var(--spacing-unit));
+}
+.vr-my-1 {
+  margin-top: calc(1 * var(--spacing-unit));
+  margin-bottom: calc(1 * var(--spacing-unit));
+}
+.vr-pt-1 {
+  padding-top: calc(1 * var(--spacing-unit));
+}
+.vr-pb-1 {
+  padding-bottom: calc(1 * var(--spacing-unit));
+}
+.vr-py-1 {
+  padding-top: calc(1 * var(--spacing-unit));
+  padding-bottom: calc(1 * var(--spacing-unit));
+}
+.vr-mt-2 {
+  margin-top: calc(2 * var(--spacing-unit));
+}
+.vr-mb-2 {
+  margin-bottom: calc(2 * var(--spacing-unit));
+}
+.vr-my-2 {
+  margin-top: calc(2 * var(--spacing-unit));
+  margin-bottom: calc(2 * var(--spacing-unit));
+}
+.vr-pt-2 {
+  padding-top: calc(2 * var(--spacing-unit));
+}
+.vr-pb-2 {
+  padding-bottom: calc(2 * var(--spacing-unit));
+}
+.vr-py-2 {
+  padding-top: calc(2 * var(--spacing-unit));
+  padding-bottom: calc(2 * var(--spacing-unit));
+}
+.vr-mt-3 {
+  margin-top: calc(3 * var(--spacing-unit));
+}
+.vr-mb-3 {
+  margin-bottom: calc(3 * var(--spacing-unit));
+}
+.vr-my-3 {
+  margin-top: calc(3 * var(--spacing-unit));
+  margin-bottom: calc(3 * var(--spacing-unit));
+}
+.vr-pt-3 {
+  padding-top: calc(3 * var(--spacing-unit));
+}
+.vr-pb-3 {
+  padding-bottom: calc(3 * var(--spacing-unit));
+}
+.vr-py-3 {
+  padding-top: calc(3 * var(--spacing-unit));
+  padding-bottom: calc(3 * var(--spacing-unit));
+}
+.vr-mt-4 {
+  margin-top: calc(4 * var(--spacing-unit));
+}
+.vr-mb-4 {
+  margin-bottom: calc(4 * var(--spacing-unit));
+}
+.vr-my-4 {
+  margin-top: calc(4 * var(--spacing-unit));
+  margin-bottom: calc(4 * var(--spacing-unit));
+}
+.vr-pt-4 {
+  padding-top: calc(4 * var(--spacing-unit));
+}
+.vr-pb-4 {
+  padding-bottom: calc(4 * var(--spacing-unit));
+}
+.vr-py-4 {
+  padding-top: calc(4 * var(--spacing-unit));
+  padding-bottom: calc(4 * var(--spacing-unit));
+}
+.vr-mt-6 {
+  margin-top: calc(6 * var(--spacing-unit));
+}
+.vr-mb-6 {
+  margin-bottom: calc(6 * var(--spacing-unit));
+}
+.vr-my-6 {
+  margin-top: calc(6 * var(--spacing-unit));
+  margin-bottom: calc(6 * var(--spacing-unit));
+}
+.vr-pt-6 {
+  padding-top: calc(6 * var(--spacing-unit));
+}
+.vr-pb-6 {
+  padding-bottom: calc(6 * var(--spacing-unit));
+}
+.vr-py-6 {
+  padding-top: calc(6 * var(--spacing-unit));
+  padding-bottom: calc(6 * var(--spacing-unit));
+}
+.vr-mt-8 {
+  margin-top: calc(8 * var(--spacing-unit));
+}
+.vr-mb-8 {
+  margin-bottom: calc(8 * var(--spacing-unit));
+}
+.vr-my-8 {
+  margin-top: calc(8 * var(--spacing-unit));
+  margin-bottom: calc(8 * var(--spacing-unit));
+}
+.vr-pt-8 {
+  padding-top: calc(8 * var(--spacing-unit));
+}
+.vr-pb-8 {
+  padding-bottom: calc(8 * var(--spacing-unit));
+}
+.vr-py-8 {
+  padding-top: calc(8 * var(--spacing-unit));
+  padding-bottom: calc(8 * var(--spacing-unit));
+}/*# sourceMappingURL=index.css.map */

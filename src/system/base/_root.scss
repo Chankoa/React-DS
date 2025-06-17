@@ -1,0 +1,41 @@
+@use '../tokens/colors' as *;
+
+:root {
+  // Light theme (default)
+  --color-banner-bg: #{get-color('neutral', 'light')};
+  --color-page-bg: #{get-color('neutral', 'white')};
+  --color-text-heading: #{get-color('neutral', 'dark')};
+  --color-text-body: #{get-color('neutral', 'medium')};
+  
+  --color-primary: #{get-color('flame', 'bright')};
+  --color-primary-hover: #{get-color('flame', 'medium')};
+  
+  --gradient-page: linear-gradient(
+    to bottom,
+    var(--color-page-bg),
+    #{get-color('neutral', 'light')}
+  );
+  
+  // Transitions
+  --transition-colors: color 0.3s ease, background-color 0.3s ease;
+  
+  &.dark {
+    --color-banner-bg: #{get-color('neutral', 'dark')};
+    --color-page-bg: #{get-color('neutral', 'medium')};
+    --color-text-heading: #{get-color('neutral', 'white')};
+    --color-text-body: #{get-color('neutral', 'light')};
+    
+    --gradient-page: linear-gradient(
+      to bottom,
+      var(--color-page-bg),
+      #{get-color('neutral', 'dark')}
+    );
+  }
+}
+
+// Base styles
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  transition: var(--transition-background), var(--transition-color);
+}

@@ -1,0 +1,33 @@
+// Design tokens abstraits
+
+// @use 'color-mixins';
+@use 'colors';
+@use 'spacing';
+@use 'typography';
+@use 'breakpoints';
+
+@use "sass:map";
+
+// Map des couleurs
+$colors: (
+  'flame': (
+    'bright': #ff4d00,
+    'medium': #ff7800,
+    'light': #ff9a00,
+    'yellow': #ffc200
+  ),
+  'neutral': (
+    'dark': #1a1a1a,
+    'medium': #333333,
+    'light': #f5f5f5,
+    'white': #ffffff
+  ),
+  'accent': (
+    'gold': #d4af37
+  )
+);
+
+// Exportation de la variable
+@forward "design-tokens" show $colors;
+
+

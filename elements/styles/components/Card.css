@@ -1,0 +1,29 @@
+/* Custom Colors */
+/* Border & Background Colors */
+/* Gradients */
+/* Spacing */
+/* Breakpoints */
+/* Couleurs PRIMAIRES*/
+.card {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.card img {
+  width: 100%;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.card .card-content {
+  padding: 1rem;
+}
+.card .card-content h3 {
+  margin: 0 0 0.5rem;
+  color: #1a1a1a;
+}
+.card .card-content p {
+  margin: 0;
+  color: #1a1a1a;
+}/*# sourceMappingURL=Card.css.map */

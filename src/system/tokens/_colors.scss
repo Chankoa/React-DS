@@ -1,0 +1,57 @@
+
+// @use "../tokens/colors" as *;
+@use "sass:map";
+@use "sass:color";
+
+// Design tokens - Palette de couleurs
+$colors: (
+  'flame': (
+    'bright': #ff4d00,
+    'medium': #ff7800,
+    'light': #ff9a00,
+    'yellow': #ffc200
+  ),
+  'neutral': (
+    'dark': #1a1a1a,
+    'medium': #333333,
+    'light': #dddddd,
+    'white': #ffffff
+  )
+);
+
+// Fonction helper pour accéder aux couleurs
+@function get-color($palette, $tone) {
+  @return map.get($colors, $palette, $tone);
+}
+
+// Mixin pour créer un dégradé flame
+@mixin flame-gradient {
+  background: linear-gradient(
+    135deg,
+    get-color('flame', 'bright') 0%,
+    get-color('flame', 'medium') 33%,
+    get-color('flame', 'light') 66%,
+    get-color('flame', 'yellow') 100%
+  );
+}
+
+.bg-flame-gradient {
+  @include flame-gradient;
+
+  &-text {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    @include flame-gradient;
+  }
+}
+
+.btn-flame {
+  background-color: var(--color-primary);
+  color: #{get-color('neutral', 'white')};
+  transition: var(--transition-colors);
+
+  &:hover {
+    background-color: var(--color-primary-hover);
+  }
+}

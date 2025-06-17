@@ -1,0 +1,19 @@
+/* Custom Colors */
+/* Border & Background Colors */
+/* Gradients */
+/* Spacing */
+/* Breakpoints */
+/* Couleurs PRIMAIRES*/
+.button, .btn {
+  background: linear-gradient(45deg, #ff4d00, #ff9a00);
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.button:hover, .btn:hover {
+  background: linear-gradient(45deg, #ff7800, #ffc200);
+}/*# sourceMappingURL=Button.css.map */

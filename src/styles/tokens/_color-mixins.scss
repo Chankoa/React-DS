@@ -1,0 +1,12 @@
+@use "sass:map";
+@use "./design-tokens" as tokens;
+
+@function get-color($palette, $tone: 'default') {
+  @return map.get(tokens.$colors, $palette, $tone);
+}
+
+@mixin apply-theme($theme-map) {
+  @each $property, $value in $theme-map {
+    --#{$property}: #{$value};
+  }
+}
