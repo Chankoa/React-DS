@@ -7,6 +7,7 @@ import { Github, Palette } from 'lucide-react';
 import DesignSystemPage from '@/pages/DesignSystemPage';
 import AboutPage from '@/pages/AboutPage';
 import StyleGuidePage from '@/pages/StyleGuidePage';
+import AdminPage from '@/pages/AdminPage';
 import AudioPlayer from '@/components/AudioPlayer';
 import { AudioContext } from '@/data/AudioContext';
 import { useDarkMode } from '@/hooks/useDarkMode';
@@ -48,6 +49,7 @@ function App() {
               <nav className="flex items-center space-x-2 md:space-x-4">
                 <Link to="/" className="text-white hover:text-white/80 transition-colors px-2 py-1 rounded-md hover:bg-white/10 text-sm md:text-base">Accueil</Link>
                 <Link to="/style-guide" className="text-white hover:text-white/80 transition-colors px-2 py-1 rounded-md hover:bg-white/10 text-sm md:text-base">Guide</Link>
+                <Link to="/admin" className="text-white hover:text-white/80 transition-colors px-2 py-1 rounded-md hover:bg-white/10 text-sm md:text-base">Admin</Link>
                 <Link to="/about" className="text-white hover:text-white/80 transition-colors px-2 py-1 rounded-md hover:bg-white/10 text-sm md:text-base">À Propos</Link>
                 <DarkModeToggle />
                 <Button className="bg-white/20 hover:bg-white/30 text-white border-white/30 hidden md:flex">
@@ -64,6 +66,7 @@ function App() {
             <Route path="/" element={<DesignSystemPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/style-guide" element={<StyleGuidePage />} />
+            <Route path="/admin" element={<AdminPage />} />
           </Routes>
         </main>
         
