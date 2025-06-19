@@ -72,15 +72,15 @@ const HeroSection = ({ onExploreClick }) => (
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="floating-animation"
+        // className="floating-animation"
       >
-        <h1 className="text-6xl font-bold text-white mb-6">
-          Design System
+        <h1 className="text-6xl font-bold mb-6">
+          React DS
           <span className="block text-4xl bg-gradient-to-r from-yellow-400 to-pink-400 bg-clip-text text-transparent">
-            Extraordinaire
+            Fusion
           </span>
         </h1>
-        <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+        <p className="text-xl /80 mb-8 max-w-2xl mx-auto">
           Une collection de composants React élégants et modernes, 
           conçus pour créer des interfaces utilisateur exceptionnelles.
         </p>
@@ -96,7 +96,7 @@ const HeroSection = ({ onExploreClick }) => (
           <Button 
             size="lg" 
             variant="outline" 
-            className="border-white/30 text-white hover:bg-white/10"
+            className="border-white/30  hover:bg-white/10"
           >
             <Download className="w-5 h-5 mr-2" />
             Télécharger
@@ -124,10 +124,10 @@ const OverviewContent = () => (
         className="glass-effect rounded-xl p-6 hover:neon-glow transition-all duration-300"
       >
         <div className={`w-12 h-12 ${component.color} rounded-lg flex items-center justify-center mb-4`}>
-          <component.icon className="w-6 h-6 text-white" />
+          <component.icon className="w-6 h-6 " />
         </div>
-        <h3 className="text-xl font-semibold text-white mb-2">{component.name}</h3>
-        <p className="text-white/70">Composant moderne et accessible</p>
+        <h3 className="text-xl font-semibold  mb-2">{component.name}</h3>
+        <p className="">Composant moderne et accessible</p>
       </motion.div>
     ))}
   </motion.div>
@@ -141,7 +141,7 @@ const ComponentsContent = () => (
     className="space-y-8"
   >
     <Card className="glass-effect border-white/20 p-6">
-      <h3 className="text-2xl font-bold text-white mb-6">Boutons</h3>
+      <h3 className="text-2xl font-bold  mb-6">Boutons</h3>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Button>Défaut</Button>
         <Button variant="secondary">Secondaire</Button>
@@ -155,7 +155,7 @@ const ComponentsContent = () => (
     </Card>
 
     <Card className="glass-effect border-white/20 p-6">
-      <h3 className="text-2xl font-bold text-white mb-6">Champs de saisie</h3>
+      <h3 className="text-2xl font-bold  mb-6">Champs de saisie</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-4">
           <Input placeholder="Nom d'utilisateur" />
@@ -166,14 +166,14 @@ const ComponentsContent = () => (
           <Textarea placeholder="Votre message..." />
           <div className="flex items-center space-x-2">
             <Switch id="notifications-ds" />
-            <label htmlFor="notifications-ds" className="text-white">Notifications</label>
+            <label htmlFor="notifications-ds" className="">Notifications</label>
           </div>
         </div>
       </div>
     </Card>
 
     <Card className="glass-effect border-white/20 p-6">
-      <h3 className="text-2xl font-bold text-white mb-6">Alertes</h3>
+      <h3 className="text-2xl font-bold  mb-6">Alertes</h3>
       <div className="space-y-4">
         <Alert>
           <Info className="h-4 w-4" />
@@ -193,7 +193,7 @@ const ComponentsContent = () => (
     </Card>
 
     <Card className="glass-effect border-white/20 p-6">
-      <h3 className="text-2xl font-bold text-white mb-6">Autres composants</h3>
+      <h3 className="text-2xl font-bold  mb-6">Autres composants</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-4">
           <div className="flex items-center space-x-4">
@@ -202,8 +202,8 @@ const ComponentsContent = () => (
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
             <div>
-              <p className="text-white font-medium">John Doe</p>
-              <p className="text-white/70 text-sm">Développeur</p>
+              <p className=" font-medium">John Doe</p>
+              <p className=" text-sm">Développeur</p>
             </div>
           </div>
           <div className="flex space-x-2">
@@ -214,11 +214,11 @@ const ComponentsContent = () => (
         </div>
         <div className="space-y-4">
           <div>
-            <label className="text-white text-sm mb-2 block">Progression</label>
+            <label className=" text-sm mb-2 block">Progression</label>
             <Progress value={75} className="w-full" />
           </div>
           <div>
-            <label className="text-white text-sm mb-2 block">Volume</label>
+            <label className=" text-sm mb-2 block">Volume</label>
             <Slider defaultValue={[50]} max={100} step={1} />
           </div>
         </div>
@@ -235,7 +235,7 @@ const ExamplesContent = () => (
     className="grid grid-cols-1 md:grid-cols-2 gap-6"
   >
     <Card className="glass-effect border-white/20 p-6">
-      <h3 className="text-xl font-bold text-white mb-4">Formulaire de contact</h3>
+      <h3 className="text-xl font-bold  mb-4">Formulaire de contact</h3>
       <div className="space-y-4">
         <Input placeholder="Votre nom" />
         <Input type="email" placeholder="Votre email" />
@@ -248,7 +248,7 @@ const ExamplesContent = () => (
     </Card>
 
     <Card className="glass-effect border-white/20 p-6">
-      <h3 className="text-xl font-bold text-white mb-4">Profil utilisateur</h3>
+      <h3 className="text-xl font-bold  mb-4">Profil utilisateur</h3>
       <div className="space-y-4">
         <div className="flex items-center space-x-4">
           <Avatar className="w-16 h-16">
@@ -256,8 +256,8 @@ const ExamplesContent = () => (
             <AvatarFallback>SA</AvatarFallback>
           </Avatar>
           <div>
-            <h4 className="text-white font-semibold">Sarah Anderson</h4>
-            <p className="text-white/70">Designer UI/UX</p>
+            <h4 className=" font-semibold">Sarah Anderson</h4>
+            <p className="">Designer UI/UX</p>
             <div className="flex space-x-1 mt-1">
               <Badge variant="secondary">Pro</Badge>
               <Badge>Vérifiée</Badge>
@@ -266,8 +266,8 @@ const ExamplesContent = () => (
         </div>
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
-            <span className="text-white/70">Projets complétés</span>
-            <span className="text-white">24/30</span>
+            <span className="">Projets complétés</span>
+            <span className="">24/30</span>
           </div>
           <Progress value={80} />
         </div>
@@ -283,10 +283,10 @@ const PlaygroundContent = ({ showToast, playTrack }) => (
     exit={{ opacity: 0, y: -20 }}
   >
     <Card className="glass-effect border-white/20 p-6">
-      <h3 className="text-2xl font-bold text-white mb-6">Playground interactif</h3>
+      <h3 className="text-2xl font-bold  mb-6">Playground interactif</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-4">
-          <h4 className="text-lg font-semibold text-white">Testez les notifications</h4>
+          <h4 className="text-lg font-semibold ">Testez les notifications</h4>
           <div className="space-y-2">
             <Button 
               onClick={() => showToast('success')} 
@@ -306,7 +306,7 @@ const PlaygroundContent = ({ showToast, playTrack }) => (
             <Button 
               onClick={() => showToast('info')} 
               variant="outline" 
-              className="w-full border-white/30 text-white hover:bg-white/10"
+              className="w-full border-white/30  hover:bg-white/10"
             >
               <Info className="w-4 h-4 mr-2" />
               Toast d'info
@@ -314,20 +314,20 @@ const PlaygroundContent = ({ showToast, playTrack }) => (
           </div>
         </div>
         <div className="space-y-4">
-          <h4 className="text-lg font-semibold text-white">Animations</h4>
+          <h4 className="text-lg font-semibold ">Animations</h4>
           <motion.div
             whileHover={{ scale: 1.1, rotate: 5 }}
             whileTap={{ scale: 0.95 }}
             className="w-20 h-20 bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl flex items-center justify-center cursor-pointer pulse-glow"
           >
-            <Heart className="w-8 h-8 text-white" />
+            <Heart className="w-8 h-8 " />
           </motion.div>
-          <p className="text-white/70 text-sm">Survolez et cliquez sur l'icône !</p>
+          <p className=" text-sm">Survolez et cliquez sur l'icône !</p>
         </div>
       </div>
     </Card>
     <Card className="glass-effect border-white/20 p-6 mt-6">
-      <h3 className="text-2xl font-bold text-white mb-6">Lecteur Audio</h3>
+      <h3 className="text-2xl font-bold  mb-6">Lecteur Audio</h3>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {sampleTracks.map((track) => (
           <motion.div
@@ -337,9 +337,9 @@ const PlaygroundContent = ({ showToast, playTrack }) => (
             whileHover={{ y: -5 }}
           >
             <img-replace src={track.cover} alt={track.title} className="w-24 h-24 rounded-md object-cover mb-3"/>
-            <h4 className="text-white font-semibold text-sm">{track.title}</h4>
-            <p className="text-white/70 text-xs">{track.artist}</p>
-            <PlayCircle className="w-8 h-8 text-white mt-2 opacity-75 group-hover:opacity-100" />
+            <h4 className=" font-semibold text-sm">{track.title}</h4>
+            <p className=" text-xs">{track.artist}</p>
+            <PlayCircle className="w-8 h-8  mt-2 opacity-75 group-hover:opacity-100" />
           </motion.div>
         ))}
       </div>
@@ -351,11 +351,11 @@ const PageFooter = () => (
   <footer className="py-12 border-t border-white/20">
     <div className="container mx-auto px-6 text-center">
       <div className="flex items-center justify-center space-x-2 mb-4">
-        <span className="text-white/70">Créé avec</span>
+        <span className="">Créé avec</span>
         <Heart className="w-4 h-4 text-red-400" />
-        <span className="text-white/70">par l'équipe Design System</span>
+        <span className="">par l'équipe Design System</span>
       </div>
-      <p className="text-white/50 text-sm">
+      <p className="text-sm">
         © {new Date().getFullYear()} Design System React. Tous droits réservés.
       </p>
     </div>
