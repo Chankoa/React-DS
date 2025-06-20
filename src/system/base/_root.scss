@@ -1,41 +1,102 @@
-@use '../tokens/colors' as *;
+@use '../tokens/colors' as colors;
 
 :root {
-  // Light theme (default)
-  --color-banner-bg: #{get-color('neutral', 'light')};
-  --color-page-bg: #{get-color('neutral', 'white')};
-  --color-text-heading: #{get-color('neutral', 'dark')};
-  --color-text-body: #{get-color('neutral', 'medium')};
-  
-  --color-primary: #{get-color('flame', 'bright')};
-  --color-primary-hover: #{get-color('flame', 'medium')};
-  
+  // Couleurs Flame
+  --color-flame-bright: #{colors.$flame-bright};
+  --color-flame-medium: #{colors.$flame-medium};
+  --color-flame-light: #{colors.$flame-light};
+  --color-flame-yellow: #{colors.$flame-yellow};
+
+  // Couleurs neutres (Light mode par défaut)
+  --color-banner-bg: #{colors.$neutral-light};
+  --color-page-bg: #{colors.$neutral-white};
+  --color-text-heading: #{colors.$neutral-dark};
+  --color-text-body: #{colors.$neutral-medium};
+
+  // Couleurs principales
+  --color-primary: #{colors.$flame-bright};
+  --color-primary-hover: #{colors.$flame-medium};
+
+  // Typographie
+  --font-serif: 'Faustina', serif;
+  --font-sans: 'Manrope', sans-serif;
+
+  // Dégradé de fond (light)
   --gradient-page: linear-gradient(
     to bottom,
     var(--color-page-bg),
-    #{get-color('neutral', 'light')}
+    #{colors.$neutral-light}
   );
-  
+
   // Transitions
   --transition-colors: color 0.3s ease, background-color 0.3s ease;
-  
-  &.dark {
-    --color-banner-bg: #{get-color('neutral', 'dark')};
-    --color-page-bg: #{get-color('neutral', 'medium')};
-    --color-text-heading: #{get-color('neutral', 'white')};
-    --color-text-body: #{get-color('neutral', 'light')};
-    
-    --gradient-page: linear-gradient(
-      to bottom,
-      var(--color-page-bg),
-      #{get-color('neutral', 'dark')}
-    );
-  }
+
+  --background: #{colors.$background-color-hsl};
+  --foreground: #{colors.$foreground-color-hsl};
+  --card: #{colors.$background-color-hsl};
+  --card-foreground: #{colors.$foreground-color-hsl};
+  --popover: #{colors.$background-color-hsl};
+  --popover-foreground: #{colors.$foreground-color-hsl};
+  --primary: #{colors.$primary-color-hsl};
+  --primary-foreground: 210 40% 98%;
+  --secondary: #{colors.$secondary-color-hsl};
+  --secondary-foreground: #{colors.$foreground-color-hsl};
+  --muted: 210 40% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96%;
+  --accent-foreground: #{colors.$foreground-color-hsl};
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: #{colors.$primary-color-hsl};
+  --radius: 0.5rem;
+
+  // Custom properties for style guide
+  --color-primary: hsl(var(--primary));
+  --color-secondary: hsl(var(--secondary));
+  --color-accent: hsl(var(--accent));
+  --color-destructive: hsl(var(--destructive));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
 }
 
-// Base styles
-body {
-  background-color: var(--color-background);
-  color: var(--color-text);
-  transition: var(--transition-background), var(--transition-color);
+.dark {
+  --color-banner-bg: #{colors.$neutral-dark};
+  --color-page-bg: #{colors.$neutral-medium};
+  --color-text-heading: #{colors.$neutral-white};
+  --color-text-body: #{colors.$neutral-light};
+
+  --color-primary: #{colors.$flame-medium};
+  --color-primary-hover: #{colors.$flame-light};
+
+  // Dégradé de fond (dark)
+  --gradient-page: linear-gradient(
+    to bottom,
+    var(--color-page-bg),
+    #{colors.$neutral-dark}
+  );
+
+  --background: #{colors.$neutral-dark};
+  --foreground: #{colors.$neutral-white};
+  --card: #{colors.$neutral-medium};
+  --card-foreground: #{colors.$neutral-white};
+  --popover: #{colors.$neutral-medium};
+  --popover-foreground: #{colors.$neutral-white};
+  --primary: #{colors.$primary-color-hsl};
+  --primary-foreground: 210 40% 98%;
+  --secondary: #{colors.$secondary-color-hsl};
+  --secondary-foreground: #{colors.$neutral-white};
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215.4 16.3% 56.9%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: #{colors.$neutral-white};
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: #{colors.$primary-color-hsl};
+  --radius: 0.5rem;
 }

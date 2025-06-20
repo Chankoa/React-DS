@@ -50,6 +50,16 @@ module.exports = {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))',
 				},
+				flame: {
+					bright: 'var(--color-flame-bright)',
+					medium: 'var(--color-flame-medium)',
+					light: 'var(--color-flame-light)',
+					yellow: 'var(--color-flame-yellow)',
+				},
+				banner: 'var(--color-banner-bg)',
+				page: 'var(--color-page-bg)',
+				heading: 'var(--color-text-heading)',
+				body: 'var(--color-text-body)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -69,6 +79,10 @@ module.exports = {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
+			},
+			fontFamily: {
+				sans: ['Manrope', 'ui-sans-serif', 'system-ui'],
+				serif: ['Faustina', 'ui-serif', 'Georgia'],
 			},
 		},
 	},

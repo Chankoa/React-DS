@@ -1,40 +1,32 @@
+// Définition explicite des couleurs (tokens Sass)
+$flame-bright: #ff4d00;
+$flame-medium: #ff7800;
+$flame-light:  #ff9a00;
+$flame-yellow: #ffc200;
 
-// @use "../tokens/colors" as *;
-@use "sass:map";
-@use "sass:color";
+$neutral-dark:   #1a1a1a;
+$neutral-medium: #333333;
+$neutral-light:  #dddddd;
+$neutral-white:  #ffffff;
 
-// Design tokens - Palette de couleurs
-$colors: (
-  'flame': (
-    'bright': #ff4d00,
-    'medium': #ff7800,
-    'light': #ff9a00,
-    'yellow': #ffc200
-  ),
-  'neutral': (
-    'dark': #1a1a1a,
-    'medium': #333333,
-    'light': #dddddd,
-    'white': #ffffff
-  )
-);
-
-// Fonction helper pour accéder aux couleurs
-@function get-color($palette, $tone) {
-  @return map.get($colors, $palette, $tone);
-}
+// Couleurs primaires et secondaires en HSL
+$primary-color-hsl: 25 100% 50%; // exemple pour #ff7800
+$secondary-color-hsl: 40 100% 50%; // adapte selon ta charte
+$background-color-hsl: 0 0% 100%;
+$foreground-color-hsl: 222.2 84% 4.9%;
 
 // Mixin pour créer un dégradé flame
 @mixin flame-gradient {
   background: linear-gradient(
     135deg,
-    get-color('flame', 'bright') 0%,
-    get-color('flame', 'medium') 33%,
-    get-color('flame', 'light') 66%,
-    get-color('flame', 'yellow') 100%
+    #{$flame-bright} 0%,
+    #{$flame-medium} 33%,
+    #{$flame-light} 66%,
+    #{$flame-yellow} 100%
   );
 }
 
+// Classe utilitaire pour le fond dégradé flame
 .bg-flame-gradient {
   @include flame-gradient;
 
@@ -46,9 +38,10 @@ $colors: (
   }
 }
 
+// Bouton thème flame utilisant les variables CSS (compatibles dark/light)
 .btn-flame {
   background-color: var(--color-primary);
-  color: #{get-color('neutral', 'white')};
+  color: var(--color-text-heading);
   transition: var(--transition-colors);
 
   &:hover {

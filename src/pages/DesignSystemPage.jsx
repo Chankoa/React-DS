@@ -75,9 +75,9 @@ const HeroSection = ({ onExploreClick }) => (
         // className="floating-animation"
       >
         <h1 className="text-6xl font-bold mb-6">
-          React DS
-          <span className="block text-4xl bg-gradient-to-r from-yellow-400 to-pink-400 bg-clip-text text-transparent">
-            Fusion
+          <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">DS Fusion</span>
+          <span className="block text-4xl font-light">
+            W/ React
           </span>
         </h1>
         <p className="text-xl /80 mb-8 max-w-2xl mx-auto">

@@ -1,13 +1,18 @@
 @use "../tokens/colors" as *;
 
 body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  transition: var(--transition-background), var(--transition-color);
   background: var(--gradient-page);
   color: var(--color-text-body);
   transition: var(--transition-colors);
+  font-family: var(--font-serif);
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--color-text-heading);
+  font-family: var(--font-sans);
 }
 
 .banner {
