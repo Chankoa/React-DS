@@ -19,11 +19,12 @@ const sampleTracks = [
   },
   {
     id: 3,
-    title: "Sleepy Cat",
-    artist: "Alejandro Magaña",
-    url: "https://assets.mixkit.co/music/preview/mixkit-sleepy-cat-135.mp3",
+    title: "Puerto Angel Por la Mañana",
+    artist: "Chankoa Sounds",
+    url: "https://filedn.com/l1vRtvhTTT4kHnR1ydDjyfF/soundswave/img/puerto-angel.jpg",
     cover: "https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80"
-  }
+  },
+
 ];
 
 export const AudioProvider = ({ children }) => {

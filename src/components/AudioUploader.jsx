@@ -4,8 +4,9 @@ import { UploadCloud } from 'lucide-react';
 
 function AudioUploader() {
   const [audios, setAudios] = useState([]);
-  const [form, setForm] = useState({ title: '', artist: '', audio_url: '' });
-  const [file, setFile] = useState(null);
+  const [form, setForm] = useState({ title: '', artist: '' });
+  const [audioFile, setAudioFile] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
   const [status, setStatus] = useState('');
 
   const fetchAudios = async () => {
@@ -18,29 +19,18 @@ function AudioUploader() {
     fetchAudios();
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await fetch('/.netlify/functions/uploadAudio', {
-      method: 'POST',
-      body: JSON.stringify(form),
-    });
-    if (res.ok) {
-      setForm({ title: '', artist: '', audio_url: '' });
-      fetchAudios();
-    }
-  };
-
-  const handleChange = (e) => {
-    setFile(e.target.files[0]);
-    setStatus('');
-  };
-
   const handleUpload = async (e) => {
     e.preventDefault();
-    if (!file) return setStatus('Veuillez sélectionner un fichier audio.');
+    if (!audioFile || !form.title || !form.artist) {
+      setStatus('Veuillez remplir tous les champs et sélectionner un fichier audio.');
+      return;
+    }
 
     const formData = new FormData();
-    formData.append('audio', file);
+    formData.append('audio', audioFile);
+    if (imageFile) formData.append('image', imageFile);
+    formData.append('title', form.title);
+    formData.append('artist', form.artist);
 
     setStatus('Envoi en cours...');
     try {
@@ -48,11 +38,21 @@ function AudioUploader() {
         method: 'POST',
         body: formData,
       });
+      let data;
+      try {
+        data = await res.json();
+      } catch (e) {
+        setStatus('Erreur serveur : ' + e.message);
+        return;
+      }
       if (res.ok) {
         setStatus('Fichier envoyé avec succès !');
-        setFile(null);
+        setForm({ title: '', artist: '' });
+        setAudioFile(null);
+        setImageFile(null);
+        fetchAudios();
       } else {
-        setStatus('Erreur lors de l’envoi.');
+        setStatus(data?.error || 'Erreur lors de l’envoi.');
       }
     } catch (err) {
       setStatus('Erreur réseau.');
@@ -65,7 +65,7 @@ function AudioUploader() {
         🎵 Ajouter un morceau
       </h2>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleUpload}
         className="flex flex-col gap-4 bg-flame-light/10 p-4 rounded-lg"
       >
         <input
@@ -73,25 +73,51 @@ function AudioUploader() {
           value={form.title}
           onChange={e => setForm({ ...form, title: e.target.value })}
           className="px-4 py-2 rounded border border-flame-light focus:ring-2 focus:ring-flame-bright focus:outline-none"
+          required
         />
         <input
           placeholder="Artiste"
           value={form.artist}
           onChange={e => setForm({ ...form, artist: e.target.value })}
           className="px-4 py-2 rounded border border-flame-light focus:ring-2 focus:ring-flame-bright focus:outline-none"
+          required
         />
-        <input
-          placeholder="URL Audio"
-          value={form.audio_url}
-          onChange={e => setForm({ ...form, audio_url: e.target.value })}
-          className="px-4 py-2 rounded border border-flame-light focus:ring-2 focus:ring-flame-bright focus:outline-none"
-        />
+        <label className="block">
+          <span className="block text-sm font-medium text-flame-bright mb-1">
+            Sélectionnez un fichier audio
+          </span>
+          <input
+            type="file"
+            accept="audio/*"
+            onChange={e => setAudioFile(e.target.files[0])}
+            className="block w-full text-sm text-gray-900 border border-flame-light rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-2 focus:ring-flame-bright file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-flame-bright file:text-white hover:file:bg-flame-medium transition"
+            required
+          />
+        </label>
+        <label className="block">
+          <span className="block text-sm font-medium text-flame-bright mb-1">
+            Image de couverture (optionnelle)
+          </span>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={e => setImageFile(e.target.files[0])}
+            className="block w-full text-sm text-gray-900 border border-flame-light rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-2 focus:ring-flame-bright file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-flame-bright file:text-white hover:file:bg-flame-medium transition"
+          />
+        </label>
         <button
           type="submit"
-          className="bg-flame-bright hover:bg-flame-medium text-white font-semibold py-2 px-6 rounded-full shadow transition"
+          className="flex items-center justify-center gap-2 bg-flame-bright hover:bg-flame-medium text-white font-bold py-2 px-6 rounded-full shadow transition disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled={!audioFile || !form.title || !form.artist}
         >
-          Uploader
+          <UploadCloud className="w-5 h-5" />
+          Envoyer
         </button>
+        {status && (
+          <div className="text-center text-sm mt-2 text-flame-medium">
+            {status}
+          </div>
+        )}
       </form>
 
       <div>
@@ -104,43 +130,24 @@ function AudioUploader() {
               key={audio.id}
               className="bg-flame-light/10 rounded-lg p-4 flex flex-col gap-2 shadow-sm"
             >
-              <div className="font-bold text-flame-medium">{audio.title}</div>
-              <div className="text-sm text-gray-700">{audio.artist}</div>
+              <div className="flex items-center gap-4">
+                {audio.image_url && (
+                  <img
+                    src={audio.image_url}
+                    alt={audio.title}
+                    className="w-16 h-16 object-cover rounded shadow"
+                  />
+                )}
+                <div>
+                  <div className="font-bold text-flame-medium">{audio.title}</div>
+                  <div className="text-sm text-gray-700">{audio.artist}</div>
+                </div>
+              </div>
               <audio controls src={audio.audio_url} className="w-full mt-2" />
             </li>
           ))}
         </ul>
       </div>
-
-      <form
-        onSubmit={handleUpload}
-        className="flex flex-col gap-4 bg-flame-light/10 p-4 rounded-lg"
-      >
-        <label className="block">
-          <span className="block text-sm font-medium text-flame-bright mb-1">
-            Sélectionnez un fichier audio
-          </span>
-          <input
-            type="file"
-            accept="audio/*"
-            onChange={handleChange}
-            className="block w-full text-sm text-gray-900 border border-flame-light rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-2 focus:ring-flame-bright file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-flame-bright file:text-white hover:file:bg-flame-medium transition"
-          />
-        </label>
-        <button
-          type="submit"
-          className="flex items-center justify-center gap-2 bg-flame-bright hover:bg-flame-medium text-white font-bold py-2 px-6 rounded-full shadow transition disabled:opacity-50 disabled:cursor-not-allowed"
-          disabled={!file}
-        >
-          <UploadCloud className="w-5 h-5" />
-          Envoyer
-        </button>
-        {status && (
-          <div className="text-center text-sm mt-2 text-flame-medium">
-            {status}
-          </div>
-        )}
-      </form>
     </div>
   );
 }
